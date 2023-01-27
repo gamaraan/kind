@@ -5,6 +5,11 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'site/**'
+
+permissions:
+  contents: read
 
 jobs:
   podman:

@@ -58,9 +58,16 @@ wsl --set-default-version 2
 1. Now, you can install your Linux distro of choice by searching the Windows Store. If you don't want to use the Windows Store, then follow the steps in the WSL docs for [manual install](https://docs.microsoft.com/en-us/windows/wsl/install-manual).
 1. Start up your distro with the shortcut added to the start menu
 
-## Setting up Docker in WSL2
+## Setting up Docker in WSL2 with Docker Desktop
 
 Install Docker with WSL2 backend here: https://docs.docker.com/docker-for-windows/wsl/
+
+
+## Setting up Docker in WSL2 without Docker Desktop
+
+Alternatively, docker can be installed in WSL2 without using Docker Desktop.
+See for example: https://dev.to/bowmanjd/install-docker-on-windows-wsl-without-docker-desktop-34m9
+
 
 Now, move on to the [Quick Start](/docs/user/quick-start) to set up your cluster with kind.
 
@@ -83,6 +90,8 @@ nodes:
 1. create deployment `kubectl create deployment nginx --image=nginx --port=80`
 1. create service `kubectl create service nodeport nginx --tcp=80:80 --node-port=30000`
 1. access service `curl localhost:30000`
+
+Alternatively, see [Helpful Tips for WSL2](#helpful-tips-for-wsl2)
 
 ## Kubernetes Service with Session Affinity
 
@@ -130,3 +139,4 @@ kernel=c:\\path\\to\\your\\kernel\\bzImage
 - If you want to terminate the WSL2 instance to save memory or "reboot", open an admin PowerShell prompt and run `wsl --terminate <distro>`. Closing a WSL2 window doesn't shut it down automatically.
 - You can check the status of all installed distros with `wsl --list --verbose`.
 - If you had a distro installed with WSL1, you can convert it to WSL2 with `wsl --set-version <distro> 2`
+- Alternative of [Accessing a Kubernetes Service running in WSL2](#accessing-a-kubernetes-service-running-in-wsl2) or [Setting Up An Ingress Controller](/docs/user/ingress/#setting-up-an-ingress-controller) for accessing workloads is using `kubectl port-forward --address=0.0.0.0`.
