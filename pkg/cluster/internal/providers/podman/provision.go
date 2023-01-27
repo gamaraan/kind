@@ -214,6 +214,10 @@ func runArgsForNode(node *config.Node, clusterIPFamily config.ClusterIPFamily, n
 	}
 	args = append(args, mappingArgs...)
 
+	if node.Gpus {
+		args = append(args, "--security-opt=label=disable --hooks-dir=/usr/share/containers/oci/hooks.d/")
+	}
+
 	switch node.Role {
 	case config.ControlPlaneRole:
 		args = append(args, "-e", "KUBECONFIG=/etc/kubernetes/admin.conf")
