@@ -251,7 +251,7 @@ func runArgsForNode(node *config.Node, clusterIPFamily config.ClusterIPFamily, n
 	args = append(args, mappingArgs...)
 
 	if node.Gpus {
-		args = append(args, "--gpus=all")
+		args = append(args, "--runtime", "nvidia", "--gpus=all")
 	}
 
 	switch node.Role {
