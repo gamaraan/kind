@@ -20,7 +20,7 @@ package nodeimage
 The default CNI manifest and images are our own tiny kindnet
 */
 
-const kindnetdImage = "docker.io/kindest/kindnetd:v20221004-44d545d1"
+const kindnetdImage = "docker.io/kindest/kindnetd:v20230511-dc714da8"
 
 var defaultCNIImages = []string{kindnetdImage}
 
@@ -91,6 +91,8 @@ spec:
         k8s-app: kindnet
     spec:
       hostNetwork: true
+      nodeSelector:
+        kubernetes.io/os: linux
       tolerations:
       - operator: Exists
       serviceAccountName: kindnet
